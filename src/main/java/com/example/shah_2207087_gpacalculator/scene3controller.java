@@ -23,7 +23,7 @@ public class scene3controller {
     @FXML
     void newCalculation(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("Hello.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("scene2.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);

@@ -100,7 +100,16 @@ public class scene2controller implements Initializable {
 
     @FXML
     void backToHome(ActionEvent event) {
-
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("GPA Calculator Home");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -133,41 +142,39 @@ public class scene2controller implements Initializable {
 
         double gpa = total / totalSemCredits;
 
-//        try {
-//
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("scene3controller.fxml"));
-//            Parent root = loader.load();
-//
-//            // 2. Get the controller for the 3rd scene
-//            scene3controller resultController = loader.getController();
-//
-//            // 3. Pass the data to the 3rd scene's controller
-//            // --- THIS IS THE ONLY LINE THAT CHANGED ---
-//            resultController.setData(gpa); // We no longer pass the courseList
-//
-//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//            Scene scene = new Scene(root);
-//            stage.setScene(scene);
-//            stage.setTitle("GPA Result");
-//            stage.show();
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            // If loading fails, show an error
-//            showError("Load Error", "Failed to load the result screen.");
-//        }
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("scene3.fxml"));
+            Parent root = loader.load();
 
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("GPA Result");
-        alert.setHeaderText("Your GPA has been calculated!");
-        alert.setContentText(String.format(
-                "Total Quality Points: %.2f\n" +
-                        "Total Semester Credits: %.1f\n\n" +
-                        "Your Semester GPA is: %.2f",
-                total, totalSemCredits, gpa
-        ));
-        alert.showAndWait();
+            scene3controller resultController = loader.getController();
+
+            resultController.setData(gpa);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("GPA Result");
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            // If loading fails, show an error
+            showError("Load Error", "Failed to load the result screen.");
+        }
+
+
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        alert.setTitle("GPA Result");
+//        alert.setHeaderText("Your GPA has been calculated!");
+//        alert.setContentText(String.format(
+//                "Total Quality Points: %.2f\n" +
+//                        "Total Semester Credits: %.1f\n\n" +
+//                        "Your Semester GPA is: %.2f",
+//                total, totalSemCredits, gpa
+//        ));
+//        alert.showAndWait();
     }
 
     private double getGradePoint(String grade) {
