@@ -75,7 +75,7 @@ public class scene2controller implements Initializable {
         String teacher1 = Teacher1Feild.getText();
         String teacher2 = teacher2Feild.getText();
         String grade = gradebox.getValue();
-        double credit= Double.parseDouble(creditStr);;
+        double credit= Double.parseDouble(creditStr);
 
         if (courseName.isEmpty() || courseCode.isEmpty() || creditStr.isEmpty()) {
             showError("Input Error", "Course Name, Code, and Credit cannot be empty.");
@@ -105,7 +105,59 @@ public class scene2controller implements Initializable {
 
     @FXML
     void calculateButton(ActionEvent event) {
+        String totalSemCreditsStr = totalCreditField.getText();
+        double totalSemCredits;
 
+        if (totalSemCreditsStr.isEmpty()) {
+            showError("Input Error", "Total Semester Credits cannot be empty.");
+            return;
+        }
+
+        try {
+            totalSemCredits = Double.parseDouble(totalSemCreditsStr);
+            if (totalSemCredits <= 0) throw new NumberFormatException();
+        } catch (NumberFormatException e) {
+            showError("Input Error", "Total Semester Credits must be a positive number.");
+            return;
+        }
+
+        if (courseList.isEmpty()) {
+            showError("Calculation Error", "No courses added to calculate GPA.");
+            return;
+        }
+
+        double total = 0.0;
+        for (Course course : courseList) {
+            total += getGradePoint(course.getGrade()) * course.getCredit();
+        }
+
+        double gpa = total / totalSemCredits;
+
+//        // Show the result in an information dialog
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        alert.setTitle("GPA Result");
+//        alert.setHeaderText("Your GPA has been calculated!");
+//        alert.setContentText(String.format(
+//                "Total Quality Points: %.2f\n" +
+//                        "Total Semester Credits: %.1f\n\n" +
+//                        "Your Semester GPA is: %.2f",
+//                totalQualityPoints, totalSemCredits, gpa
+//        ));
+//        alert.showAndWait();
+    }
+
+    private double getGradePoint(String grade) {
+        if(grade=="A+")return 4.0;
+        else if(grade=="A")return 3.75;
+        else if(grade=="A-")return 3.50;
+        else if(grade=="B+")return 3.25;
+        else if(grade=="B")return 3.00;
+        else if(grade=="B-")return 2.75;
+        else if(grade=="C+")return 2.50;
+        else if(grade=="C")return 2.25;
+        else if(grade=="C-")return 2.00;
+        else if(grade=="D")return 1.75;
+        else return 0.0;
     }
 
     @FXML
