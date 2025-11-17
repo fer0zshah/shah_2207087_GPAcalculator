@@ -51,7 +51,7 @@ public class scene2controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ObservableList<String> grades = FXCollections.observableArrayList(
-                "A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "F"
+                "A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-","D", "F"
         );
         gradebox.setItems(grades);
         gradebox.setValue("A+");
@@ -105,7 +105,7 @@ public class scene2controller implements Initializable {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.setTitle("GPA Calculator Home");
+            stage.setTitle("Welcome to CPA calculator!");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -160,7 +160,6 @@ public class scene2controller implements Initializable {
 
         } catch (IOException e) {
             e.printStackTrace();
-            // If loading fails, show an error
             showError("Load Error", "Failed to load the result screen.");
         }
 

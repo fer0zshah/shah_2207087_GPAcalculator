@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" spacing="30" style="-fx-background-color: #fffff8; -fx-border-color: #d4af37; -fx-border-width: 8; -fx-padding: 40;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="com.example.shah_2207087_gpacalculator.scene3controller">
+<VBox alignment="CENTER" spacing="30" style="-fx-background-color: #fffff8; -fx-border-color: #d4af37; -fx-border-width: 8; -fx-padding: 40;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.shah_2207087_gpacalculator.scene3controller">
     <Label style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #b8860b;" text="Semester Grade Report" />
     <Label fx:id="gpaLabel" style="-fx-font-size: 28px; -fx-text-fill: #27ae60;" text="Your GPA: 0.00" />
 
