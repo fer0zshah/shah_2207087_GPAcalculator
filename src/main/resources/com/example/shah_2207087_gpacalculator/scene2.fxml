@@ -15,10 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
-<!--<BorderPane fx:id="rootPane" prefHeight="920.0" prefWidth="845.0" style="-fx-background-color: #aaf0f1;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">-->
-<BorderPane fx:id="rootPane" prefHeight="920.0" prefWidth="845.0" style="-fx-background-color: #aaf0f1;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.shah_2207087_gpacalculator.scene2controller">
+<BorderPane fx:id="rootPane" prefHeight="920.0" prefWidth="845.0" style="-fx-background-color: #aaf0f1;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.shah_2207087_gpacalculator.scene2controller">
     <top>
         <VBox alignment="CENTER" spacing="15.0" style="-fx-padding: 20; -fx-background-color: #2a3e50;">
             <children>
@@ -70,14 +67,14 @@
                         <ComboBox fx:id="gradebox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                     </children>
                 </GridPane>
-                <TableView prefHeight="300.0">
+                <TableView fx:id="CourseTable" prefHeight="300.0">
                     <columns>
-                        <TableColumn minWidth="0.0" prefWidth="213.60004270076752" text="CourseName" />
-                        <TableColumn minWidth="0.0" prefWidth="107.20001220703125" text="CourseCode" />
-                        <TableColumn prefWidth="86.4000244140625" text="Credit" />
-                        <TableColumn minWidth="0.0" prefWidth="148.79995727539062" text="Teacher1" />
-                        <TableColumn minWidth="0.0" prefWidth="140.7999267578125" text="Teacher2" />
-                        <TableColumn minWidth="0.0" prefWidth="95.2000732421875" text="Grade" />
+                        <TableColumn fx:id="colCourseName" minWidth="0.0" prefWidth="213.60004270076752" text="CourseName" />
+                        <TableColumn fx:id="colCourseCode" minWidth="0.0" prefWidth="107.20001220703125" text="CourseCode" />
+                        <TableColumn fx:id="colCredit" prefWidth="86.4000244140625" text="Credit" />
+                        <TableColumn fx:id="colTeacher1" minWidth="0.0" prefWidth="148.79995727539062" text="Teacher1" />
+                        <TableColumn fx:id="colTeacher2" minWidth="0.0" prefWidth="140.7999267578125" text="Teacher2" />
+                        <TableColumn fx:id="colGrade" minWidth="0.0" prefWidth="95.2000732421875" text="Grade" />
                     </columns>
                 </TableView>
                 <HBox prefHeight="38.0" prefWidth="782.0" style="-fx-spacing: 10;">
