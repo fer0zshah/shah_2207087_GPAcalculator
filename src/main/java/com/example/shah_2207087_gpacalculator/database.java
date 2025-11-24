@@ -22,7 +22,6 @@ public class database{
         try (Connection conn = DriverManager.getConnection(DB_URL);
              Statement stmt = conn.createStatement()) {
             stmt.execute(sql);
-            System.out.println("Database has been initialized.");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -43,13 +42,35 @@ public class database{
             pstmt.setString(6, course.getGrade());
 
             pstmt.executeUpdate();
-            System.out.println("Course saved to database.");
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
+    public static ObservableList<Course> getAllCourses() {
+        ObservableList<Course> list = FXCollections.observableArrayList();
+        String sql = "SELECT * FROM courses";
 
+        try (Connection conn = DriverManager.getConnection(DB_URL);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
 
+            while (rs.next()) {
+                Course c = new Course(
+                        rs.getString("name"),
+                        rs.getString("code"),
+                        rs.getDouble("credit"),
+                        rs.getString("teacher1"),
+                        rs.getString("teacher2"),
+                        rs.getString("grade")
+                );
+                list.add(c);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }
