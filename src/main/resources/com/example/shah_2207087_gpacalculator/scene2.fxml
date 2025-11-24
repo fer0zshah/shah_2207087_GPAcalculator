@@ -24,9 +24,9 @@
             </children>
         </VBox>
     </top>
-   <right>
+    <center>
         <!-- This ScrollPane will wrap the VBox, allowing it to scroll -->
-        <ScrollPane fitToWidth="true" BorderPane.alignment="CENTER">
+        <ScrollPane fitToWidth="true">
             <content>
                 <!-- I removed prefHeight and prefWidth from this VBox so the ScrollPane can manage its size -->
                 <VBox style="-fx-padding: 30; -fx-spacing: 30;">
@@ -103,5 +103,5 @@
                 </VBox>
             </content>
         </ScrollPane>
-   </right>
+    </center>
 </BorderPane>
