@@ -50,6 +50,7 @@ public class scene2controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        database.initializeDB();
         ObservableList<String> grades = FXCollections.observableArrayList(
                 "A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-","D", "F"
         );
@@ -62,8 +63,9 @@ public class scene2controller implements Initializable {
         colTeacher1.setCellValueFactory(new PropertyValueFactory<>("teacher1"));
         colTeacher2.setCellValueFactory(new PropertyValueFactory<>("teacher2"));
         colGrade.setCellValueFactory(new PropertyValueFactory<>("grade"));
-
+        courseList = database.getAllCourses();
         CourseTable.setItems(courseList);
+        calculateTotalCredits();
     }
 
 
@@ -90,11 +92,11 @@ public class scene2controller implements Initializable {
         }
 
         Course newCourse = new Course(courseName, courseCode, credit, teacher1, teacher2, grade);
-
+        database.addCourse(newCourse);
         courseList.add(newCourse);
-
-        currentTotalCredits += credit;
-        currentCreditLabel.setText(String.format("%.1f", currentTotalCredits));
+        calculateTotalCredits();
+//        currentTotalCredits += credit;
+//        currentCreditLabel.setText(String.format("%.1f", currentTotalCredits));
         clearFeilds(null);
     }
 
@@ -174,6 +176,13 @@ public class scene2controller implements Initializable {
 //                total, totalSemCredits, gpa
 //        ));
 //        alert.showAndWait();
+    }
+    private void calculateTotalCredits() {
+        currentTotalCredits = 0;
+        for (Course c : courseList) {
+            currentTotalCredits += c.getCredit();
+        }
+        currentCreditLabel.setText(String.format("%.1f", currentTotalCredits));
     }
 
     private double getGradePoint(String grade) {
